@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -36,8 +36,7 @@ public class PlayerControls : MonoBehaviour
     {
         // When player presses Up Arrow, character moves forward.
         // When player presses Right or Left Arrow keys, character rotates direction.
-        if (playerOneControls == true){
-            if (controller.isGrounded){
+        if (playerOneControls == true)
                 if (Input.GetKey(KeyCode.UpArrow)){
                     anim.SetBool("Run Forward", true);
                     running = true;
@@ -90,8 +89,7 @@ public class PlayerControls : MonoBehaviour
             controller.Move(moveDir * Time.deltaTime);
         }
 
-        if (playerTwoControls == true){
-            if (controller.isGrounded){
+        if (playerTwoControls == true)
                 if (Input.GetKey(KeyCode.W)){
                     anim.SetBool("Run Forward", true);
                     running = true;
@@ -123,7 +121,11 @@ public class PlayerControls : MonoBehaviour
                     moveDir = transform.TransformDirection(moveDir);
                     } else {
                     anim.SetBool("Jump", false);
-                }
+                    if (controller.isGrounded){
+                        canWallJmp = false; 
+                        moveDirection.x = xHorizontal;
+                        velocity = moveDirection * moveSpeed;
+                    }
 
                 if (freeRotation == true){
                     if (Input.GetKey(KeyCode.D)){
